@@ -29,6 +29,8 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
    - Buttons and clickable text
    - Hidden backend fields when explicitly mentioned
    - Status, enum, date/time, numeric, and monitoring fields
+   - Exclude global non-field requirements such as permissions/roles, internationalization, and backend log language unless the user explicitly asks to include them.
+   - For common component capabilities such as table column customization, include only the exposed control (for example, the customization button) unless the PRD describes the configuration fields.
    - Ask the user to confirm the field scope before generating the final data dictionary.
 
 4. After the user confirms the field scope, split the data dictionary into multiple DT/OT groups before building tables:
@@ -83,6 +85,8 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
 - Output multiple smaller data dictionary tables with clear module/context headings instead of one long table when the PRD has more than one module or interaction area.
 - Keep same-name fields separate when their module, location, behavior, DT, or OT differs; include the context in the heading or description to remove ambiguity.
 - Do not add implementation-only database columns unless the PRD mentions them or the user asks to infer hidden fields.
+- Do not include permissions/roles, internationalization requirements, or backend log-language requirements as data dictionary fields by default; treat them as global requirements, not UI/data fields.
+- For table field customization or other reused public components, record the visible trigger control only, and do not infer the component's internal configuration fields unless the PRD states them.
 - For buttons, use DT = `B` and OT based on button display behavior.
 - For display-only metrics, use OT = `D`; do not mark them as required or optional unless they are also configurable.
 - For enum fields, list the enum values in `取值范围/枚举`.
