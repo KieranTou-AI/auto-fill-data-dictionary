@@ -30,6 +30,7 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
    - Hidden backend fields when explicitly mentioned
    - Status, enum, date/time, numeric, and monitoring fields
    - Exclude global non-field requirements such as permissions/roles, internationalization, and backend log language unless the user explicitly asks to include them.
+   - Exclude pure interaction capabilities such as drag-and-drop, sorting by drag, resizing, or mouse gestures unless they expose a named button, field, or displayed value.
    - For common component capabilities such as table column customization, include only the exposed control (for example, the customization button) unless the PRD describes the configuration fields.
    - Ask the user to confirm the field scope before generating the final data dictionary.
 
@@ -86,6 +87,7 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
 - Keep same-name fields separate when their module, location, behavior, DT, or OT differs; include the context in the heading or description to remove ambiguity.
 - Do not add implementation-only database columns unless the PRD mentions them or the user asks to infer hidden fields.
 - Do not include permissions/roles, internationalization requirements, or backend log-language requirements as data dictionary fields by default; treat them as global requirements, not UI/data fields.
+- Do not include pure interaction capabilities such as drag-and-drop, drag sorting, resizing, or mouse gestures as data dictionary fields by default; include only their visible controls or affected fields when explicitly named.
 - For table field customization or other reused public components, record the visible trigger control only, and do not infer the component's internal configuration fields unless the PRD states them.
 - For buttons, use DT = `B` and OT based on button display behavior.
 - For display-only metrics, use OT = `D`; do not mark them as required or optional unless they are also configurable.
