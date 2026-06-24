@@ -1,4 +1,4 @@
 interface:
   display_name: "自动填充数据字典"
-  short_description: "从PRD自动提取字段并补全数据字典"
+  short_description: "从PRD提取字段，并按模块拆分补全DT/OT数据字典"
   default_prompt: "Use $auto-fill-data-dictionary to extract PRD fields and fill a standardized data dictionary."
