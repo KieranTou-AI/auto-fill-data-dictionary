@@ -42,14 +42,20 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
    - Use concise group headings in the user's PRD language, such as `### 工程管理 - 筛选栏` and `### 工程管理 - 表格列表`.
    - If the PRD module boundary is unclear, create a `待确认模块` group and note the uncertainty instead of forcing a misleading grouping.
 
-5. For each confirmed group, build a separate data dictionary table with this default format unless the user provides a different template:
+5. Before producing the final tables, collect all unresolved items that would otherwise be written as `待确认`, ask the user concise clarification questions in the conversation, and wait for the user's answers:
+   - Ask about requiredness, editability, control type, enum values, defaults, module/context, and button disabled/hidden behavior when they affect DT, OT, or the description.
+   - Group questions by module/context so the user can answer efficiently.
+   - Do not put `待确认` into the final data dictionary for an unresolved item until the user has had a chance to answer.
+   - If the user explicitly says the item is unknown or should stay unresolved, then write `待确认` in the final table.
+
+6. For each confirmed group, build a separate data dictionary table with this default format unless the user provides a different template:
    - No.
    - 字段
    - 描述
    - DT
    - OT
 
-6. Infer DT from the PRD wording and examples:
+7. Infer DT from the PRD wording and examples:
    - Names, IDs, codes, descriptions, labels, text, enum labels: usually `C`
    - Counts, sizes, rates, prices, percentages, durations as numbers: usually `N`
    - Calendar dates without time: `D`
@@ -58,7 +64,7 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
    - Empty state placeholders: `E`
    - Action controls: `B`
 
-7. Infer OT from behavior:
+8. Infer OT from behavior:
    - Required form field: include `M`
    - Optional form field: include `O`
    - Editable after save: include `A`
@@ -73,9 +79,9 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
    - Hidden backend-only field: include `H`
    - Select, radio, switch controls: use `DRB`, `DMB`, `R`, or `S`
 
-8. Preserve uncertainty explicitly. If the PRD does not state a field's module, context, type, requiredness, editability, enum values, default value, or button disabled behavior, write `待确认` instead of inventing details.
+9. Preserve uncertainty explicitly after asking clarification questions. If the PRD and the user's clarification still do not state a field's module, context, type, requiredness, editability, enum values, default value, or button disabled behavior, write `待确认` instead of inventing details.
 
-9. Normalize abbreviations:
+10. Normalize abbreviations:
    - Use only abbreviations from the standard reference.
    - When one field has multiple operation traits, join OT values with `/`, such as `M/A/TB`.
    - Keep `DT` for the data type 日期时间 and do not confuse it with the umbrella term 数据类型.
@@ -92,5 +98,6 @@ Before producing a final data dictionary, load [references/data-dictionary-stand
 - For buttons, use DT = `B` and OT based on button display behavior.
 - For display-only metrics, use OT = `D`; do not mark them as required or optional unless they are also configurable.
 - For enum fields, list the enum values in `取值范围/枚举`.
+- Before final output, ask the user to resolve any `待确认` item that affects DT, OT, requiredness, editability, enum values, defaults, or button behavior; only keep `待确认` when the user explicitly confirms it should remain unresolved.
 - When using the default 5-column format, put enum values, examples, default values, and uncertainty notes in `描述`.
 - For numbers involving float precision, note `float 保留 2 位小数` when applicable.
